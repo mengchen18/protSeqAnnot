@@ -2,10 +2,6 @@ f <- file.choose("~/projects/")
 
 ##########################
 
-root <- "~/projects"
-dir_interpro <- "~/interpro"
-dir_sans <- "~/sanz"
-
 source("https://raw.githubusercontent.com/mengchen18/protSeqAnnot/main/R.R")
 source("https://raw.githubusercontent.com/mengchen18/omicsViewer/master/R/proc_parseDat.R")
 library(shiny)
@@ -14,7 +10,7 @@ library(shinyFiles)
 library(DT)
 library(shinybusy)
 
-annot <- function(x, root = root, dir_interpro = dir_interpro, dir_sans = dir_sans) {
+annot <- function(x, root = "~/projects", dir_interpro = "~/interpro", dir_sans = "~/sanz") {
   
   bx <- basename(x)
   g1 <- grep("(.fas|.fa|.fasta)$", bx, ignore.case = TRUE)
