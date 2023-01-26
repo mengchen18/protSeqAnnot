@@ -4,8 +4,9 @@ RUN apt-get update \
 	&& apt-get install -y \
 		python-is-python3 \
 		python3-pip \
-		openjdk-11-jdk \
-	&& pip install numpy scipy fastcluster requests
+		openjdk-11-jdk \	
+	&& pip install "numpy<1.24.0" \
+	&& pip install scipy fastcluster requests
 
 RUN mkdir /home/shiny/projects \
 	&& mkdir /home/shiny/interpro \
