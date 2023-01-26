@@ -24,7 +24,7 @@ annot <- function(x, root = root, dir_interpro = dir_interpro, dir_sans = dir_sa
   
   if (g1) {
     v <- fastaAnnotation(
-      input_fasta = fasta, cmdOnly = FALSE,
+      input_fasta = x, cmdOnly = FALSE,
       pannzer = file.path(dir_sans, "runsanspanz.py"),
       interproscan = file.path(dir_interpro, "interproscan.sh")
     ) } else
