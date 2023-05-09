@@ -5,4 +5,4 @@
 # IMPORTANT: the give file path should not contain space or backslash. 
 # If the file name is too long, consider making it shorter. 
 
-source("https://raw.githubusercontent.com/mengchen18/protSeqAnnot/main/rstudio_call.R")
+source("https://raw.githubusercontent.com/mengchen18/protSeqAnnot/rstudio_local/rstudio_call.R")

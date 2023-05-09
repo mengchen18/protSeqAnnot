@@ -1,16 +1,17 @@
-f <- file.choose("~/projects/")
+f <- file.choose("/media/share_baybioms/Projects/002_Proteomics/")
+
 
 ##########################
 
-source("https://raw.githubusercontent.com/mengchen18/protSeqAnnot/main/R.R")
-source("https://raw.githubusercontent.com/mengchen18/omicsViewer/master/R/proc_parseDat.R")
+source("https://raw.githubusercontent.com/mengchen18/protSeqAnnot/rstudio_local/R.R")
+source("https://raw.githubusercontent.com/mengchen18/omicsViewer/master/rstudio_local/proc_parseDat.R")
 library(shiny)
 library(seqinr)
 library(shinyFiles)
 library(DT)
 library(shinybusy)
 
-annot <- function(x, root = "~/projects", dir_interpro = "~/interpro", dir_sans = "~/sanz") {
+annot <- function(x, dir_interpro = "/media/LIMS/Src/fasta_annotation/interproscan-5.52-86.0", dir_sans = "/media/LIMS/Src/fasta_annotation/SANS") {
   
   bx <- basename(x)
   g1 <- grep("(.fas|.fa|.fasta)$", bx, ignore.case = TRUE)

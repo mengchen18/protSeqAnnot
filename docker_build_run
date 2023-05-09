@@ -1,8 +1,0 @@
-Build under the folder:
-/media/share_baybioms/Projects/008_Bioinformatics/B013_Protein_annotation_pipeline/docker
-Run:
-docker build . -f Dockerfile_rstudio -t fasta_annot_rstudio
-
-
-Start the container:
-docker run -it --rm -p 6060:8787 -e DISABLE_AUTH=true -e GROUPID=1001 -v /media/share_baybioms/Projects/002_Proteomics:/home/rstudio/projects -v /media/share_baybioms/Projects/008_Bioinformatics/B013_Protein_annotation_pipeline/src/interproscan-5.52-86.0:/home/rstudio/interpro -v /media/share_baybioms/Projects/008_Bioinformatics/B013_Protein_annotation_pipeline/src/SANSPANZ.3:/home/rstudio/sanz fasta_annot_rstudio
