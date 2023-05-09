@@ -58,6 +58,11 @@ server <- function(input, output, session) {
   atab <- eventReactive(input$run, {
     req(filePath())
     shinybusy::show_modal_spinner(text = "Annotating sequences ...")
+    
+    zz <- file( file.path(dirname(filePath()), "log.Rout"), open = "wt" )
+    sink(zz)
+    sink(zz, type = "message")
+    
     if (grepl("(dat|dat.gz)$", filePath())) {
       # extracting annotation information directly
       v <- parseDatTerm(filePath(), outputDir = dirname(filePath()))
@@ -71,6 +76,10 @@ server <- function(input, output, session) {
     } else {
       stop("Unknown data format!")
     }
+    
+    sink(zz)
+    sink(zz, type = "message")
+    
     shinybusy::remove_modal_spinner()
     v
   })
