@@ -5,7 +5,7 @@ dir_interpro <- "/home/shiny/interpro"
 dir_sans <- "/home/shiny/sanz"
 
 ##########################
-source("https://raw.githubusercontent.com/mengchen18/omicsViewer/main/R.R")
+source("https://raw.githubusercontent.com/mengchen18/protSeqAnnot/main/R.R")
 source("https://raw.githubusercontent.com/mengchen18/omicsViewer/master/R/proc_parseDat.R")
 library(shiny)
 library(seqinr)
