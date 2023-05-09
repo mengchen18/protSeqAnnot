@@ -4,7 +4,7 @@ f <- file.choose("/media/share_baybioms/Projects/002_Proteomics/")
 ##########################
 
 source("https://raw.githubusercontent.com/mengchen18/protSeqAnnot/rstudio_local/R.R")
-source("https://raw.githubusercontent.com/mengchen18/omicsViewer/master/rstudio_local/proc_parseDat.R")
+source("https://raw.githubusercontent.com/mengchen18/omicsViewer/master/R/proc_parseDat.R")
 library(shiny)
 library(seqinr)
 library(shinyFiles)
