@@ -18,7 +18,7 @@ strip_copy <- function(inputfasta, outputdir="./") {
 
 # interproscan
 runInterProScan <- function(
-  inputfasta, outputdir="./", cmdOnly = FALSE, interproscan = "~/interproscan/interproscan.sh"
+  inputfasta, outputdir="./", cmdOnly = FALSE, interproscan = "~/interproscan/interproscan.sh", log = "interproscan.log"
 ) {
   
   if (!dir.exists(outputdir))
@@ -33,8 +33,8 @@ runInterProScan <- function(
                "-goterms",
                "-pa",
                "-f tsv", 
-               "-dp")#,
-               # "&>", file.path(outputdir, "interproscan.log"))
+               "-dp",
+               "&>", file.path(outputdir, log))
   if (cmdOnly) {
     print(cmd)
     return(cmd)
@@ -43,7 +43,7 @@ runInterProScan <- function(
 }
 
 runPannzer <- function(
-  inputfasta, outputdir="./", pannzer = "~/sanspanz3/runsanspanz.py", cmdOnly = FALSE
+  inputfasta, outputdir="./", pannzer = "~/sanspanz3/runsanspanz.py", cmdOnly = FALSE, log = "sanz.log"
 ) {
   
   if (!dir.exists(outputdir))
@@ -52,7 +52,7 @@ runPannzer <- function(
   inf2 <- inputfasta
   
   out <- sprintf('",%s/DE.out,%s/GO.out,%s/anno.out"', outputdir, outputdir, outputdir)
-  cmd <- paste0("python3 ", pannzer, " -R -o ", out, " -i ", inf2)#, " &> ", file.path(outputdir, "sanz.log"))
+  cmd <- paste0("python3 ", pannzer, " -R -o ", out, " -i ", inf2, " &> ", file.path(outputdir, log))
   
   if (cmdOnly) {
     print(cmd)
@@ -80,10 +80,11 @@ prepIPR <- function(input) {
 fastaAnnotation <- function(
   input_fasta , cmdOnly = FALSE,
   pannzer = "/media/LIMS/Src/fasta_annotation/SANS/runsanspanz.py",
-  interproscan = "/media/LIMS/Src/fasta_annotation/interproscan-5.52-86.0/interproscan.sh"
+  interproscan = "/media/LIMS/Src/fasta_annotation/interproscan-5.52-86.0/interproscan.sh",
+  log = "../../console.log"
 ) {
   
-  dir.create(dd <- paste0("TEMP_seqAnnot_", basename(input_fasta)))
+  dir.create(dd <- "TEMP_seqAnnot")
   workdir <- file.path(dirname(input_fasta), dd)
   infile <- strip_copy(inputfasta = input_fasta, outputdir = workdir)
   print(infile)
@@ -96,14 +97,14 @@ fastaAnnotation <- function(
     inputfasta = infile, 
     outputdir=outdir_pan, 
     pannzer = pannzer, 
-    cmdOnly = cmdOnly) 
+    cmdOnly = cmdOnly, log = log) 
   
   ### Interproscan ####
   outdir_ipr <- file.path(outdir, paste0(bn, "_annotIPR"))
   runInterProScan(
     infile, outputdir=outdir_ipr, 
     cmdOnly = cmdOnly,
-    interproscan = interproscan) 
+    interproscan = interproscan, log = log) 
   
   #### summarize results
   df_panz <- prepPannzer(file.path(outdir_pan, "anno.out"))
