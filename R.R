@@ -34,7 +34,7 @@ runInterProScan <- function(
                "-pa",
                "-f tsv", 
                "-dp",
-               "&>", file.path(outputdir, log))
+               "&>>", file.path(outputdir, log))
   if (cmdOnly) {
     print(cmd)
     return(cmd)
@@ -52,7 +52,7 @@ runPannzer <- function(
   inf2 <- inputfasta
   
   out <- sprintf('",%s/DE.out,%s/GO.out,%s/anno.out"', outputdir, outputdir, outputdir)
-  cmd <- paste0("python3 ", pannzer, " -R -o ", out, " -i ", inf2, " &> ", file.path(outputdir, log))
+  cmd <- paste0("python3 ", pannzer, " -R -o ", out, " -i ", inf2, " &>> ", file.path(outputdir, log))
   
   if (cmdOnly) {
     print(cmd)
